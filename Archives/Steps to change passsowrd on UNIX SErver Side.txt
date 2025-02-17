@@ -1,0 +1,11 @@
+Steps to change passsowrd on UNIX Side for Prodia:
+
+1. Connect to VPN through Easy connect
+2. Connect to 192.168.120.34 Server in WinSCP
+3. Connect to Global Protect using Ctrl+R ---(It will ask for user_n and pass)
+4. Ctrl+R and connect to ssh at 192.168.106.90(Prodia-SIT)
+5. Retype old password. --(You can check in Hati-Server Info Sheet)
+6. Type New Password and retype it again.
+7. Update same changed new password in the Hati-Server Info Sheet.
+
+Note: Same from Step.4 to Step.7 goes for 192.168.106.94(Prodia-UAT)
