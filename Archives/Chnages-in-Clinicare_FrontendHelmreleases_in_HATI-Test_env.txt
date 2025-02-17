@@ -1,0 +1,19 @@
+STEPS:
+
+1. Create new branches for liabrares in from HATI-QA-k8s-> HATI-Test.
+2. Creta a New branch HATI-QA-k8s -> HATI-Test.
+2. Update the links in enviornments -> enviornments.dev.ts to pref ones.
+3. Update the branch name in /githubworkflws -> build.yaml to HATI-Test.
+updated build.yaml and env.dev.ts
+
+NOtE: when doing for another service first check whether the service consist the libs which we already created the new branch. DOn not create new Bran.ch for these
+
+lths-scheduling-lib
+lths-ot-lib
+artifcats
+lths-settings-lib
+lths-clinical-lib
+
+UI DIRECTORY: Releases/hati-test/test/clinicare/clinicare-frontend-helmrelease.yaml
+
+
