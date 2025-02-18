@@ -1,0 +1,9 @@
+CMD'S TO RUN PERFORMANCE TESTING IN WINSCP JMETER
+
+1.  ./apache-jmeter-5.6.3/bin/jmeter -n -t AWSLoadTesting/OPD/Updated_OP_Registration_For_Clinicare_1.jmx -l AWSLoadTesting/OPD/Updated_OP_Registration_For_Clinicare_1_20users.jtl
+
+2.  apache-jmeter-5.6.3/bin/jmeter -g AWSLoadTesting/OPD/Updated_OP_Registration_For_Clinicare_1_20users.jtl -o AWSLoadTesting/OPD/Updated_OP_Registration_For_Clinicare_1_20users-report4
+
+3.   cd AWSLoadTesting/OPD/
+
+4. tar -czf Updated_OP_Registration_For_Clinicare_1_20users-report4.tgz Updated_OP_Registration_For_Clinicare_1_20users-report4
