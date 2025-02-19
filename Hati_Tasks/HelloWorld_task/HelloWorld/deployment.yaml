@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-java-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-java
+  template:
+    metadata:
+      labels:
+        app: hello-world-java
+    spec:
+      containers:
+      - name: hello-world-java
+        image: jishanmulla977/hello-world-java
+        ports:
+        - containerPort: 9090 # Update to match your Java application's port

@@ -1,0 +1,73 @@
+AUTO INSTANCE START AND STOP TASK:
+
+STEP_1] CREATE AN EC2 INSTANCE
+
+STEP_2] CREATE A POLICY TO START AND STOP THE INSTANCE:
+
+1. Go in IAM service and go on policy and click on create policy.
+2. Select EC2 service
+3. Select Actions: 1} StartInstances AND 2} StopInstances
+4. Click on ADD ARNs for instance.
+5. Add Resource region e.g(us-east-1), Resource instance(instance id you have created). CLick on Add ARNs --(Resource in for This Account)
+6. CLick on next.
+7. Give Policy name e.g AUTOSTARTTSTOP
+8. Click on Create Policy
+
+STEP_3] CREATE A ROLE FOR LAMBDA FUNCTION:
+
+1. Go in IAM service and go on Roles and click on create role.
+2. Select AWS service as Trusted entity type.
+3. Select usecase as Lambda.
+4. Select the policy we have Created just now named e.g AUTOSTARTTSTOP
+5. Write a Role name e.g AUTOconfig
+6. Click on Create Role.
+
+STEP_4] CREATE A LAMBDA FUNCTION:---> FOR STOP
+
+1. Click on Create a function.
+2. Select Author from Scratch.
+3. Write a Function name e.g STOPEC2
+4. Select Runtime as Python 3.9
+5. Select execution role as an existing one ---> Select the role we have created now e.g AUTOconfig
+6. Copy and paste from STOP.txt ---> You can find it in the folder
+7. Deploy the function.
+8. Test it and check weather instance is stopping.
+
+STEP_5] CREATE A LAMBDA FUNCTION:---> FOR START
+
+1. Click on Create a function.
+2. Select Author from Scratch.
+3. Write a Function name e.g STARTEC2
+4. Select Runtime as Python 3.9
+5. Select execution role as an existing one ---> Select the role we have created now e.g AUTOconfig
+6. Copy and paste from START.txt ---> You can find it in the folder
+7. Deploy the function.
+8. Test it and check weather instance is starting.
+
+STEP_6] USE CLOUD WATCH TO AUTOMATE THE EVENT:
+
+1. Go to Cloud Watch and under Buses click on Rules and click on Create Rule.
+2. Write a Rule name e.g STOPEC2
+3. Select Rule Type as Schedule
+4. Write a Corn expression when you want to schedule stop the EC2 event----> (Refer to this link: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-scheduled-rule-pattern.html)
+5. You have to Convert the Corn frm your local time to UTC as it uses UTC timezone.
+6. Select Target as Lambda function
+7. Select the STOPEC2 function we created earlier.
+8. Click next and Create the Rule.
+
+---------------------> Now for Start event:
+
+2. Write a Rule name e.g STARTEC2
+3. Select Rule Type as Schedule
+4. Write a Corn expression when you want to schedule start the EC2 event----> (Refer to this link: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-scheduled-rule-pattern.html)
+5. You have to Convert the Corn frm your local time to UTC as it uses UTC timezone.
+6. Select Target as Lambda function
+7. Select the STARTEC2 function we created earlier.
+8. Click next and Create the Rule.
+
+STEP_7] GO TO INSTANCES AND CHECK WETHER INSTANCE IS STOPPING AND STARTING AUTOMATICALLY AT THE GIVEN TIME.
+
+TASK DONE!!
+
+
+

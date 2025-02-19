@@ -1,0 +1,14 @@
+FLux automation task:
+
+1. make sure you are in the project directory and using minikube daemon.
+cmd minikube dameon change: minikube -p minikube docker-env | Invoke-Expression
+
+2. install flux cmd: flux install
+
+3. Check wether the GitHub is configured with project directory and docker hub is logined
+
+4. create flux source: e.g: flux create source git demo-new --url=https://github.com/JISH-65/demo-new --branch=main --interval=1m
+
+5.Create a Flux Kustomization: e.g: flux create kustomization demo-new --source=GitRepository/demo-new --path="./manifests" --prune=true --interval=1m
+
+6.Enable Image Automation: e.g: 

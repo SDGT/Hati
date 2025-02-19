@@ -1,0 +1,77 @@
+Postgres TASK using docker container:
+
+1. Pull docker image and run the container: docker run -d --name postgresdb -e POSTGRES_PASSWORD=password postgres
+
+2. Get into the container: docker exec -it postgresdb /bin/bash
+
+3. connect to pstgresql shell: psql -U postgres
+
+4. check the system dbs: \l --after checking press q to exit
+
+5. connect to postgres db: \c postgres
+
+6. now exit from shell: \q
+
+7. install dbweare and connect to postgres --make sure to enter password: password
+
+NOTE: IT WILL SHOE ERROE OR NOT CONNECT NOW FOLLOW BELOW STEPS:
+
+so delete the running container:
+
+docker ps --this will show the running containers.
+
+docker rm -f container_id --this will delete the container
+
+8. run new container: docker run -d --name postgresdb -p 5432:5432 -e POSTGRES_USER=postgresuser -e POSTGRES_PASSWORD=password -e POSTGRES_DB=newdb -v postgres_db:/var/lib/postgresql/data postgres
+
+--this will run a new container in a persistent volume
+
+9. connect to container: docker exec -it postgresdb /bin/bash
+
+10. connect to postgress shell: psql -d newdb -U postgresuser -W --enter password i.e password
+
+11. create databse: create database testdb;
+
+13. connect to db: \c testdb --enter password i.e password
+
+14. check the dbeaver --if there is error follow below steps:
+
+SOlving error:
+
+2. got to docker container: docker exec -it cotainer_id /bin/bash
+
+2. go to: nano /var/lib/postgresql/data/pg_hba.conf
+
+3. write there following: 
+
+local   all             postgres                                peer
+host    newdb           postgresuser    docker_container_ip     md5
+
+4. remove local scram all all line
+
+5. ctrl + X and press eneter to save
+
+6. Restart the docker container
+
+7. go in the container: docker exec -it postgresdb /bin/bash
+
+8. connect to postgress shell: psql -d newdb -U postgresuser -W --enter password i.e password
+
+9. connect to db: \c testdb --enter password i.e password
+
+10. exit: \q
+
+11. exit: exit
+
+12. go Dbeaver and fill details: 
+
+1] HOST: your ipv4 address e.g 192.168.17.105
+2] Database: newdb
+3] Port:5432
+4] Username: postgresuser
+5] Password: password
+6] tick on show all databses
+7] Test connection is successful click on Finish.
+
+TASK DONE
+

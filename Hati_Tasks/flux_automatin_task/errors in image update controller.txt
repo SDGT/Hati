@@ -1,0 +1,30 @@
+errors in image update controller solving:
+
+1. RBAC Role Files
+imageupdateautomation_editor_role.yaml: This file defines the RBAC role for editing ImageUpdateAutomation resources.
+imageupdateautomation_viewer_role.yaml: This file defines the RBAC role for viewing ImageUpdateAutomation resources.
+
+1}} ImageUpdateAutomation resources:
+
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/rbac/imageupdateautomation_editor_role.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/rbac/imageupdateautomation_viewer_role.yaml
+
+2. Sample Resources:
+
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/samples/image_v1beta1_imageupdateautomation.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/samples/image_v1beta2_imageupdateautomation.yaml
+
+3. CRD:
+
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/crd/bases/image.toolkit.fluxcd.io_imageupdateautomations.yaml
+
+4. Manager Deployment:
+
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-automation-controller/main/config/manager/deployment.yaml
+
+
+2]] IMageREflector resorces:
+
+1. kubectl apply -f https://raw.githubusercontent.com/fluxcd/image-reflector-controller/main/config/crd/bases/image.toolkit.fluxcd.io_imagerepositories.yaml
+
+

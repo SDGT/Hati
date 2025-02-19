@@ -1,0 +1,27 @@
+mongo db task:
+
+1. Pull docker image and run the container: docker run -d --name mongodb -p 27017:27017 -v mongo_db:/data/db mongo:latest
+
+2. Get into the container: docker exec -it container_id /bin/bash
+
+3. use mongosh if mongo cmd is not recognized
+
+4. exit
+
+5. show dbs
+
+6. use mongodb -- it will create new db
+
+7. create a collection: db.createCollection("newcollection")
+
+8. show dbs
+
+9. insert content: db.newcollection.insert({"firstname" : "jishan", "lastname" : "mulla"})
+
+10. check if it is inserted: db.newcollection.find()
+
+11. download nosqlbooster
+
+12. connect to db and verify
+
+TASK DONE----------------------- 

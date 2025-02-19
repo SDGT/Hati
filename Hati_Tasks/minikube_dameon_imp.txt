@@ -1,0 +1,9 @@
+minikube -p minikube docker-env | Invoke-Expression --(to get into dameon)
+docker build -t hello-kubernetes:1.0 .
+kubectl apply -f deployment.yaml
+kubectl get pods
+minikube service hello-kubernetes-service --url  (manual)
+minikube service hello-kubernetes-service (direct)
+
+----------------------------------------------------
+java -jar target/hello-kubernetes-1.0.jar (check spring boot is runing)

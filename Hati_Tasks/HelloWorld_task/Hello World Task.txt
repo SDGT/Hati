@@ -1,0 +1,33 @@
+Hello World Task:
+
+@All files and directories requird for project all included in HelloWorld directory.
+@this task is to create a docker image and deploy it using Kubernetes(minikube) for the java program you have created. 
+
+1. Make sure you have correctly downloaded docker and minikube.
+
+2. Start minikube: minikube start
+
+3. Check its status: minikube status
+
+4. go into minikube dameon: minikube -p minikube docker-env | Invoke-Expression
+
+5. Write a docker file: --provided in project folder.
+
+7. write a service.yaml file or expose to a service: kubectl expose deployment hello-kubernetes-deployment --type=NodePort --port=80
+
+8. Build docker image: docker build -t image_name
+
+10. Create deployment: kubectl apply -f deployment.yaml --provided in project folder
+
+11. Check wether pods are running: kubectl get pods
+
+12. You can check pods in k9s --optional
+
+13. You can access browser to check the output:
+
+14. minikube service hello-kubernetes-service --url  (manual)
+   minikube service hello-kubernetes-service (direct) 
+
+NOTE: make sure ur java spring boot is running: java -jar target/hello-kubernetes-1.0.jar
+
+TASK DONE

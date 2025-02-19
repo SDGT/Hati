@@ -1,0 +1,37 @@
+TO MAKE A MIRTH CHANNEL WITH BASCI AUTHENTICATION:
+
+<------------------------CONFIGURATION AND CREATION OF CHANNEL--------------------------->
+
+1. Download Mirth connect. --(refer: https://www.youtube.com/watch?v=d4M9V6q3rjM)
+2. Create a new channel. --(refer: https://www.youtube.com/watch?v=sTkHtatz_0c)
+3. Now write the channel name --(example: Get Patient Info)
+4. Set the data types --(Set all to JSON)
+5. GO TO SOURCE TAB------------------------------------>
+6. Set Conncetor Type --(Set to HTTP Listner)
+7. Set Local Port --(example: 8089)
+8. Set Authentication Type --(example: Set to Basic Authentication and write username {e.g admin} and password {e.g admin})
+9. Write Basic Context Type --(example: sample) --(Copy HTTP URL:http://localhost:8089/sample/)
+10. GO TO DESTINATION TAB------------------------------------>
+11. Set the Connector Type --(Set to JavacriptWriter)
+12. Write JavaScript Settings --(example: logger.info(connectorMessage.getEncodedData());)
+13. SAVE THE CHANGES FROM LEFT TAB---------------------------->
+14. CLICK ON DEPLOY CHANNEL FROM LEFT TAB AND SELECT YES OPTION------------------------>
+
+<------------------------------TESTING USING POSTMAN----------------------------------------->
+1. Download PostMAn API Application. --(refer: https://www.youtube.com/watch?v=Hmn5XeZv-GE)
+2. Sign In in Postman API.
+3. Select POST --(Deafult set to GET)
+4. Paste HTTP URL --(example: http://localhost:8089/sample/)
+5. GO TO AUTHORIZATION TAB------------------------------------>
+6. Write username and password of mirth channel --(example: username {e.g admin} and password {e.g admin})
+7. GO TO SCRIPTS TAB--------------------------------------->
+8.Write a Javascript to send to channel
+--(example: const data = {
+  name: "Jishan Mulla",
+  company: "Hati"
+};)
+9. Click On SEND. --(If successfull it will show Green 200 check)
+
+TASK DONE!
+
+For Additional knowlede: https://www.youtube.com/watch?v=HtfIS_e-TOM&list=PL7RofmAB1m77XOMMiZnpPK6kPNGtwsvmJ

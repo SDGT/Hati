@@ -1,0 +1,49 @@
+Postgres Task using Kubernetes:
+
+1. Verify the Environment:
+
+Ensure Minikube and Docker Desktop are running on your Windows system.
+Confirm Kubernetes is enabled in Docker Desktop:
+Open Docker Desktop → Go to Settings → Enable Kubernetes.
+
+2. Start Minikube: 
+minikube start
+minikube status
+
+3. Set Minikube Docker environment:
+minikube -p minikube docker-env | Invoke-Expression
+
+4. Create a PostgreSQL Deployment and Service:
+
+@Create a directory named postgres: mkdir postgres
+@ change location of terminal to dir: cd /path/to/your/postgres
+@ Create postgres-deployment.yaml --file is in the GitHub foder you can acess it
+
+5. Apply the configuration: 
+kubectl apply -f postgres-deployment.yaml --this consist of all database detail!
+
+6. Verify the deployment:
+kubectl get pods
+kubectl get deploy
+kubectl get svc
+
+--make sure all are in running state
+
+7. Check if Minikube is forwarding the port correctly:
+minikube service postgres-service --url --this gives you minikube ip and port and this keeps to running in terminal
+
+8. Open Dbevear and fill in details:
+Host: minikube ip
+Port: minikube port
+Database: mydatabase
+Username: admin
+Password: admin123
+
+9. Test connection.
+
+10. Aditionally you can see the deployment in k9s --optional
+
+NOTE: When you want to connect again to databse after closing the terminal make sure to run 
+this cmd: minikube service postgres-service --url to get port and edit the connection in debeaver and edit the minikube port provided in terminal.
+
+TASK DONE
