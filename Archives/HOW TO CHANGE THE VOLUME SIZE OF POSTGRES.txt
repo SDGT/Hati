@@ -1,0 +1,8 @@
+TO CHANGE THE VOLUME SIZE OF POSTGRES IN HATI-Test ENV:
+
+1. Got to hati-test/test/common/postgresql-helmrelease.yaml.
+2. Change the persistence: size from 15Gi to 20Gi.
+3. Commit the file.
+4. Wait for 5-10 mins for FLUX to apply changes or Reconcile FLUX manually.
+
+NOTE: NOW THE POSTGRES VOLUME SIZE HAS BEEN CHANGED FROM 15Gi to 20Gi
