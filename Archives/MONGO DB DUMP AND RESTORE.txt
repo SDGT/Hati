@@ -1,0 +1,16 @@
+MONGO DB DUMP AND RESTORE:
+
+1. Go to CMD and ssh in medcare dev using cmd: ssh medcare@192.168.120.32
+2. Verfiy installation of monogoDB using cmd: mongodump.
+3. Perform mongodb dump using cmd: mongodump --uri "mongodb://<username>:<password>@192.168.120.32:27017" --out./dump-medcare
+4. Open K9s of Dev
+5. Go to mongo-0 pod
+6. Open ssh using "s" button
+7. connect to mongodb using cmd: mongosh "mongodb://<username>:<password>@<host-name>:27017/? authsource=admin"
+8. Use database which you want to delete using cmd: use <database-name>
+9. now use cmd: db.dropDatabase(); to delete it.
+10. Restore the database using cmd: mongorestore mongodb://<username>:<password>@<host-name>:27017 --dir dump-medcare
+11. Go to Dump dir in CMD opened of medcare dev and delete all unwanted databases using cmd: rm -r <database-name>
+
+
+TASK DONE!!
