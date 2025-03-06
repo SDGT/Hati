@@ -1,0 +1,40 @@
+
+
+BACKEND PROCESS: 
+" Go to Releases/mykare-hati-dev/dev/clinicare
+/clinicare-backend-helmrelease.yaml"
+Go to service Repo
+Rename branch Dev-k8s to Dev-k8s-11
+Rename branch HATI-Dev-VersionUpgrade to Dev-k8s
+Clone the branch in local
+Open the code with Dev-k8s
+go to github repo select Dev-k8s-11 branch and open docker file
+Copy and paste docker file to Dockerfile in Dev-k8s in Vs-code
+change image name to FROM eclipse-temurin:17-jre
+Same copy and replace all bootstrap.yaml from github to Vs-code
+open pom.xml and searcxh for kubernetes and copy all data like that seeing the exact syntax like github to Vs-code pom.xml
+copy all dependencies to vs code and replace with consul dependencies
+Create .github/workflows folder and in that create build.yaml file
+Copy the build.yaml file contents from github repo and paste in Vs-code build.yaml file
+change runner name from Dev-11 to Dev-17
+
+Refference: https://github.com/SDGT/HATI-EHR-CDSS-Adapter/commit/8e14d924efc6805160222b6a88469d3820661afb
+
+FRONTEND PROCESS:
+Rename Branch Dev-k8s to Dev-k8s-16
+Rename Branch Version-upgrade to Dev-k8s
+Clone Repo in Vscode using SourceTree
+Clone Repo 2 times in seprate dirctory in your local
+In one Directory the branch should be Dev-k8s-16
+In one Directory the branch should be Dev-k8s
+Copy Files from Dev-k8s-16 to Dev-k8s
+Copy build.yaml and remove "setup node"
+copy svc-nginx
+copy env.js
+copy enviornment.dev.ts
+copy env.js
+copy svc-env
+copy Dockerfile --chenge nodeversion to latest(23.4.0-latest)
+copy nginx.conf
+add script line in index.html
+commit all changes to github
