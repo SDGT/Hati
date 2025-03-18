@@ -1,0 +1,44 @@
+KAFA TRAFFIC DISTRIBUITON:
+
+Step 1: Confirm the Replication Factor: 
+CMD: kubectl exec -it kafka-0 -n test -- bash
+
+Run the following command to describe all topics:
+CMD:  /opt/bitnami/kafka/bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+Step 2: Generate a List of Topics: 
+
+1] Create a JSON file (e.g., topics.json) to specify the topics to reassign: For example take a look of topic.txt in the folder
+
+2] Edit topics.json and add each topic from /tmp/topics.txt to the "topics" array. For example take a look of topics-to-move.json in the folder :
+CMD: 
+echo '{"version":1,"topics":[' > /tmp/topics-to-move.json
+awk '{print "{\"topic\":\"" $0 "\"},"}' /tmp/topics.txt >> /tmp/topics-to-move.json
+sed -i '$ s/,$//' /tmp/topics-to-move.json
+echo ']}' >> /tmp/topics-to-move.json
+
+3] Move this file to the pod if you created it locally (e.g., using kubectl cp):
+CMD: kubectl cp /path/to/local/topics.txt kafka-0:/tmp/topics.txt -n test
+
+4] Then, Verify the file:
+CMD: cat /tmp/topics-to-move.json
+
+5] Generate a Reassignment Plan:
+CMD: /opt/bitnami/kafka/bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --generate --topics-to-move-json-file /tmp/topics-to-move.json --broker-list 0,1,2
+
+6] Save the proposed plan:
+BASH: vi /tmp/proposed-reassignment.json
+
+7]Paste the proposed plan: For example take a look of proposed-reassignment.json in the folder
+
+8] Execute the Reassignment:
+CMD: /opt/bitnami/kafka/bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --reassignment-json-file /tmp/proposed-reassignment.json --execute
+
+9] Monitor the Reassignment Progress:
+CMD: /opt/bitnami/kafka/bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --reassignment-json-file /tmp/proposed-reassignment.json --verify
+
+10] Verify the New Distribution:
+CMD: /opt/bitnami/kafka/bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+
+
