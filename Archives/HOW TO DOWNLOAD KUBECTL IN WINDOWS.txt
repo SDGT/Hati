@@ -1,0 +1,18 @@
+HOW TO DOWNLOAD KUBECTL IN WINDOWS:
+
+Step 1: Open PowerShell (Without Admstator Access)
+
+Step 2: Create a Directory for kubectl:
+CMD: mkdir $HOME\kubectl
+
+Step 3: Download kubectl:
+CMD: Invoke-WebRequest -Uri "https://dl.k8s.io/release/$( (Invoke-RestMethod -Uri https://dl.k8s.io/release/stable.txt).Trim() )/bin/windows/amd64/kubectl.exe" -OutFile $HOME\kubectl\kubectl.exe
+
+Step 4: Add the Directory to Your PATH:
+CMD: [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$HOME\kubectl", "User")
+
+Step 5: Open a New PowerShell Window
+
+Step 6: Verify the Installation:
+CMD: kubectl version
+
