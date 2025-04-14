@@ -1,0 +1,94 @@
+download keyclock zip file --> unzip it and cut and past that file in c drive.
+open keycloak-26.1.4 --> bin --> open cmd in that file
+
+use this commad to run keyclock ->
+
+kc.bat start-dev --> it will run on localhost:8080
+
+if port is alrady in use --> kc.bat start-dev --http-port=<port-number>
+it will run given port
+
+now signup to the admin portal
+after that login using username and password
+
+if you want new Realm 
+
+left side keyclock with realm name by default master
+
+click on that --> create realm --> realm name --> create
+
+choose that realm
+
+create client
+
+client --> create client --> client ID --> next
+Client authentication on
+in Authentication flow
+select Standard flow, Service accounts roles
+
+next --> save
+
+get client secret id
+
+client --> select client --> Credentials  --> copy client secret
+
+----------------------------------------------------------------------
+
+mirth connect
+
+New channel
+
+enter the name
+
+set data type : json
+
+connector type: HTTP Listener
+
+local port: <provide any port>
+
+Source settings: 
+Response: select Destination 1
+
+HTTP Authentication: oauth 2.0 Token verification
+
+access token location: Request Header : Authorization
+
+verification URL: (ex: http://localhost:8180/realms/mirthrealm/protocol/openid-connect/userinfo)
+
+goto destination
+
+connector type: Javascript writer
+
+script: responseMessage = "It works!";
+	return responseMessage;
+
+now save changes
+
+Deploy Channel
+
+--------------------------------------------------------------
+
+Open Postman
+
+Using GET method
+enter mirth connect channel url (ex: http://localhost:8091)  
+
+Authorization:  ---->
+Type: Oauth 2.0
+Add Authontication Data to: Request Header
+
+Configure New Token -------> Configuration options
+
+Token Name: keyclock-token
+Grant Type: Client Credentials
+Access Token URL: (ex: http://localhost:8180/realms/mirthrealm/protocol/openid-connect/token)
+Client ID: from keclock clintid 
+Client Secret: copy from keyclock client secret
+Scope: openid
+Client Authentication: send as basic auth header
+
+click on get new access token
+
+save it in Bearer
+
+now click on send request it will work.
