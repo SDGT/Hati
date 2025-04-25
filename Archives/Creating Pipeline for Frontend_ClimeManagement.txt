@@ -1,0 +1,11 @@
+Clone Repo in Vscode
+In one Directory the branch should be ProductDev-k8s
+copy build.yaml - form any existing repo and change configs
+copy svc-nginx - form any existing repo
+copy svc-env - form any existing repo
+copy nginx.conf - form any existing repo
+copy env.js.template - form any existing repo
+copy Dockerfile  --chenge version and path 
+add script line in index.html
+add secretes and variables in GitHub 
+commit all changes to GitHub
